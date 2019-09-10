@@ -3,19 +3,12 @@
 <html>
     <head>
          <meta charset="UTF-8">
-        <title>Aš valdau HTML ir PHP!</title>
+        <title><?php print 'Aš , '. date("l") .' ir PHP!';?> </title>
     </head>
     <body>
-        <h1>Kamilė - HTML ir PHP asė!</h1>
-        <p>Kuriu dinaminį turinį.
-        Atidaryta: 
-        
-<?php
-print "Today is " . date("Y/m/d") . "<br>";
-print "The time is " . date("h:i:sa");
-     ?>   
-        </p>
+        <h1>Kamilė - HTML <?php print 'ir PHP';?> asė! <br> jau nuo <?php print date("Y"); ?> metų</h1>
+        <p>Viskas prasidėjo <?php print date("m") .'<br>' .'mėnesio ' . date("d") .' dieną';?>!</p>
+       
     </body>
 </html>
-
 
