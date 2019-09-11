@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-   <meta charset="UTF-8">
-   <title></title>
-   <style>
-body {background-color: rgb(<?php print rand(1,225) . ',' . rand(1,225) . ',' . rand(1,225)?>); }
-h1   {font-size: <?php print rand(10, 100); ?>px}
-p    {color: rgb(<?php print rand(1,225) . ',' . rand(1,225) . ',' . rand(1,225)?>); }
-</style>
-</head>
-<body>
-   <h1>Aš keičiu dydį!</h1>
-   <p>Aš keičiu savo spalvą!</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            img {height: 1<?php print date('s'); ?>px}
+        </style>
+    </head>
+    <body>     
+        <img src="https://img.freepik.com/free-vector/realistic-bomb-illustration_1284-11507.jpg?size=626&ext=jpg">
+        <h1><?php print date('s'); ?></h1>
+    </body>
 </html>
 
 
