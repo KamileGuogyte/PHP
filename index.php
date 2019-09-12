@@ -3,7 +3,8 @@
 $siukslines_turis = 40;
 $siuksliu_turis_per_d = 15;
 $max_kaupo_turis = rand(1, 10);
-$rezultatas = $siukslines_turis/$siuksliu_turis_per_d+$max_kaupo_turis;
+$rezultatas1 = $siukslines_turis+$max_kaupo_turis;
+$rezultatas2 = $rezultatas1/$siuksliu_turis_per_d;
 
 ?> 
 <html>
@@ -12,9 +13,8 @@ $rezultatas = $siukslines_turis/$siuksliu_turis_per_d+$max_kaupo_turis;
     </head>
     <body>
     <h1> 
-        <?php print 'po ' . floor($rezultatas) . ' dienų reikia pirkti gėles'?>
+       po <?php print date('Y-m-d', strtotime('+' . floor($rezultatas2) .  'days')) . ' dienų reikia pirkti gėles'?>
     </h1>
-   
 </body>
 </html>
 
