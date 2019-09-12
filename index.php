@@ -12,7 +12,7 @@ $rezultatas = $siukslines_turis/$siuksliu_turis_per_d+$max_kaupo_turis
     </head>
     <body>
     <h1> 
-        <?php print $rezultatas ?>
+        <?php print 'po ' . floor($rezultatas) . 'dienų reikia pirkti gėles'?>
     </h1>
    
 </body>
