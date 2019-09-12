@@ -3,8 +3,11 @@
 $siukslines_turis = 40;
 $siuksliu_turis_per_d = 15;
 $max_kaupo_turis = rand(1, 10);
-$rezultatas1 = $siukslines_turis+$max_kaupo_turis;
-$rezultatas2 = $rezultatas1/$siuksliu_turis_per_d;
+$siuksliu_turis_max = $siukslines_turis+$max_kaupo_turis;
+$siuksles_po_dienu = $siuksliu_turis_max/ $siuksliu_turis_per_d;
+$suapvalintas_sk_siuksliu = floor($siuksles_po_dienu);
+$date = date('Y-m-d', strtotime('+' . ($suapvalintas_sk_siuksliu) .  'days'));
+$text = " po $suapvalintas_sk_siuksliu dienų ($date) pirk gėlių ir šampano, jei nori išvengti konflikto "
 
 ?> 
 <html>
@@ -13,7 +16,7 @@ $rezultatas2 = $rezultatas1/$siuksliu_turis_per_d;
     </head>
     <body>
     <h1> 
-       po <?php print date('Y-m-d', strtotime('+' . floor($rezultatas2) .  'days')) . ' dienų reikia pirkti gėles'?>
+        <?php print $text ?>
     </h1>
 </body>
 </html>
