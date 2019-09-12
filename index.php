@@ -1,23 +1,28 @@
-
+<?php
+$string = 'Tekstas';
+$int = 123;
+$bool = true;
+$null = (null);
+?> 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>P></title>
+        <title>Antraštė</title>
     </head>
     <body>
         <ul>
             <li>
-                <?php print 'Kažkoks tekstas' ?>
+                String Tipas: <?php print $string ?>
             </li> 
             <li>
-                <?php print 123 ?>
+                Integer Tipas: <?php print $int ?>
             </li>
             <li>
-                <?php print true ?> 
+                Boolean Tipas: <?php print $bool ?> 
             </li> 
             <li>
-                <?php print (null) ?>
+                Null Tipas: <?php print $null ?>
             </li> 
         </ul>
     </body>
