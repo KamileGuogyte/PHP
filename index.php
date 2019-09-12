@@ -1,8 +1,5 @@
 <?php
-$string = 'Tekstas';
-$int = 123;
-$bool = true;
-$null = (null);
+$img = 'https://media.mnn.com/assets/images/2015/08/union-wood-sunrise.jpg.653x0_q80_crop-smart.jpg'
 ?> 
 <!DOCTYPE html>
 <html>
@@ -11,20 +8,10 @@ $null = (null);
         <title>Antraštė</title>
     </head>
     <body>
-        <ul>
-            <li>
-                String Tipas: <?php print $string ?>
-            </li> 
-            <li>
-                Integer Tipas: <?php print $int ?>
-            </li>
-            <li>
-                Boolean Tipas: <?php print $bool ?> 
-            </li> 
-            <li>
-                Null Tipas: <?php print $null ?>
-            </li> 
-        </ul>
+        <img src='<?php print $img ?>'>
+        <img src='<?php print $img ?>'>
+        <img src='<?php print $img ?>'>
+        <img src='<?php print $img ?>'>
     </body>
 </html>
 
