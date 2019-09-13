@@ -1,46 +1,50 @@
 <?php
-$sunny = rand(0, 1);
 
-if ($sunny) {
-    $oras = 'Sauleta';
-    $class = 'sun';
+$randomiser = rand(0, 1);
+
+if ($randomiser) {
+    $coffe = 'black-coffe';
 } else {
-    $oras = 'Debesuota';
-    $class = 'rain';
+    $coffe = 'latte';
 }
+
 ?>
+
 <html>
     <head>
-        <title> Antraštė </title>      
+        <title> Antraštė </title>  
+        <link rel="stylesheet" href ="includes/normalize.css">
         <style>
-            .sun {
-                display: inline-block;
-                width: 150px;
-                height: 150px;
-                background-size: cover;
-                background-image: url(https://cdn2.vectorstock.com/i/1000x1000/21/46/sun-weather-and-season-logo-icon-design-vector-22962146.jpg);
-            }
 
-            .rain {
-                display: inline-block;
-                width: 150px;
-                height: 150px;
-                background-size: cover;
-                background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Weather-rain-thunderstorm.svg/919px-Weather-rain-thunderstorm.svg.png);
-            }
-
-            .container {
+            div {
                 display: flex;
+                justify-content: center;
                 align-items: center;
+            }
+
+            .black-coffe {
+                color: white;
+                height: 100vh;
+                background-color: black;  
+            }
+
+            .latte {
+                color: white;
+                height: 100vh;
+                background-color: red;
+            }
+
+            .p {
+                font-size: 40px;
             }
 
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="<?php print $class; ?>">
-            </div>
-            <h3><?php print $oras; ?></h3>
+        <div class="<?php print $coffe; ?>">
+            <p>
+                Gersiu <?php print $coffe; ?>
+            </p>
         </div>
     </body>
 </html>
