@@ -1,11 +1,15 @@
 <?php
 
-$randomiser = rand(0, 1);
+$randomiser = rand(0, 2);
 
-if ($randomiser) {
+print $randomiser;
+
+if ($randomiser ===0) {
     $coffe = 'black-coffe';
-} else {
+} elseif ($randomiser ===1) {
     $coffe = 'latte';
+} else {
+    $coffe = 'tea';
 }
 
 ?>
@@ -33,7 +37,13 @@ if ($randomiser) {
                 height: 100vh;
                 background-color: red;
             }
-
+              
+            .tea {
+                color: white;
+                height: 100vh;
+                background-color: yellow;
+            }
+            
             .p {
                 font-size: 40px;
             }
