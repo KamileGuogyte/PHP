@@ -1,37 +1,48 @@
 <?php
+$sunny = rand(0, 1);
 
-$grizai_velai = rand(0, 1);
-$grizai_isgeres = rand(0, 1);
-
-var_dump("Grizai velai: $grizai_velai, Grizai isgeres: $grizai_isgeres");
-
-
-$rezultatas = 'nemiegosi';
-if ($grizai_velai && $grizai_isgeres) {
-    $isvada = 'Grįžai vėlai ir išgėręs';
-    $rezultatas = 'miegosi';
-} elseif ($grizai_velai && !$grizai_isgeres){
-    $isvada = 'Grįžai vėlai';  
-} elseif(!$grizai_velai && $grizai_isgeres) {
-      $isvada = 'Grįžai išgėręs';
+if ($sunny) {
+    $oras = 'Sauleta';
+    $class = 'sun';
 } else {
-      $isvada = 'Nieko nepadarei';
-     
+    $oras = 'Debesuota';
+    $class = 'rain';
 }
-
 ?>
 <html>
     <head>
-        <title><?php print $title; ?></title>  
+        <title> Antraštė </title>      
+        <style>
+            .sun {
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                background-size: cover;
+                background-image: url(https://cdn2.vectorstock.com/i/1000x1000/21/46/sun-weather-and-season-logo-icon-design-vector-22962146.jpg);
+            }
+
+            .rain {
+                display: inline-block;
+                width: 150px;
+                height: 150px;
+                background-size: cover;
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Weather-rain-thunderstorm.svg/919px-Weather-rain-thunderstorm.svg.png);
+            }
+
+            .inlineblock {
+                display: inline-block;
+            }
+
+        </style>
     </head>
     <body>
-        <ul>
-            <h1>Buitinė skaičiuoklė</h1>
-            <h3>Išvada: <?php print $rezultatas; ?> ant sofos </h3>   
-            
-        </ul>
+        <div
+            class="<?php print $class; ?>">
+        </div>
+        <h3  
+            class="inlineblock">
+            <?php print $oras; ?>
+        </h3>
     </body>
 </html>
-
-
 
