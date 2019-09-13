@@ -5,14 +5,18 @@ $grizai_isgeres = rand(0, 1);
 
 var_dump("Grizai velai: $grizai_velai, Grizai isgeres: $grizai_isgeres");
 
+
+$rezultatas = 'nemiegosi';
 if ($grizai_velai && $grizai_isgeres) {
     $isvada = 'Grįžai vėlai ir išgėręs';
+    $rezultatas = 'miegosi';
 } elseif ($grizai_velai && !$grizai_isgeres){
-    $isvada = 'Grįžai vėlai';      
+    $isvada = 'Grįžai vėlai';  
 } elseif(!$grizai_velai && $grizai_isgeres) {
-      $isvada = 'Grįžai išgėręs';  
+      $isvada = 'Grįžai išgėręs';
 } else {
       $isvada = 'Nieko nepadarei';
+     
 }
 
 ?>
@@ -22,8 +26,9 @@ if ($grizai_velai && $grizai_isgeres) {
     </head>
     <body>
         <ul>
-            <h1> Buitinė skaičiuoklė</h1>
-            <h2><?php print $isvada; ?></h2>   
+            <h1>Buitinė skaičiuoklė</h1>
+            <h3>Išvada: <?php print $rezultatas; ?> ant sofos </h3>   
+            
         </ul>
     </body>
 </html>
