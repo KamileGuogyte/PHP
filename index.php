@@ -1,24 +1,19 @@
 <?php
 
-$distance = rand(100, 200);
-$consumption = 7.5;
-$price_1 = 1.3;
-$my_money = 100; 
+$grizai_velai = rand(0, 1);
+$grizai_isgeres = rand(0, 1);
 
-$fuel_total = $distance * $consumption / 100;
-$price_trip = $fuel_total * $price_1;
-        
-$title = 'Kelionės skaičiuoklė';
-$text_1 = "Nuvažiuota distancija: $distance";
-$text_2 = "Sunaudota $fuel_total l. kuro";
-$text_3 = "Kaina: $price_trip pinigų";
+var_dump("Grizai velai: $grizai_velai, Grizai isgeres: $grizai_isgeres");
 
-if ($price_trip>$my_money) {
-    print "Neįperkama";
+if ($grizai_velai && $grizai_isgeres) {
+    $isvada = 'Grįžai vėlai ir išgėręs';
+} elseif ($grizai_velai && !$grizai_isgeres){
+    $isvada = 'Grįžai vėlai';      
+} elseif(!$grizai_velai && $grizai_isgeres) {
+      $isvada = 'Grįžai išgėręs';  
 } else {
-    print "Įperkama";
+      $isvada = 'Nieko nepadarei';
 }
-
 
 ?>
 <html>
@@ -27,8 +22,8 @@ if ($price_trip>$my_money) {
     </head>
     <body>
         <ul>
-            <li> Turimi pinigai: <?php print $my_money; ?></li>
-            <hr></hr>    
+            <h1> Buitinė skaičiuoklė</h1>
+            <h2><?php print $isvada; ?></h2>   
         </ul>
     </body>
 </html>
