@@ -1,30 +1,37 @@
 <?php
 
-//km
-$distance = rand(1, 10); 
-
-//1/100km
-$consumption = 7.5; 
-
-//Eur/1
+$distance = rand(100, 200);
+$consumption = 7.5;
 $price_1 = 1.3;
-$fuel_total = ($distance * $consumption)/100;
+$my_money = 100; 
+
+$fuel_total = $distance * $consumption / 100;
 $price_trip = $fuel_total * $price_1;
-       
+        
+$title = 'Kelionės skaičiuoklė';
+$text_1 = "Nuvažiuota distancija: $distance";
+$text_2 = "Sunaudota $fuel_total l. kuro";
+$text_3 = "Kaina: $price_trip pinigų";
+
+if ($price_trip>$my_money) {
+    print "Neįperkama";
+} else {
+    print "Įperkama";
+}
+
+
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <title><?php print $title; ?></title>  
     </head>
     <body>
-        <h1>Kelionės skaičiuoklė</h1>
         <ul>
-            <li> Nuvažiuota distancija <?php print $distance; ?>     
-            </li>
-          <li> Sunaudota <?php print $fuel_total; ?>
-            </li>
-           <li> Kaina <?php print $price_trip; ?> eur
-            </li>
+            <li> Turimi pinigai: <?php print $my_money; ?></li>
+            <hr></hr>    
         </ul>
     </body>
 </html>
+
+
+
