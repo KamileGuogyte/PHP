@@ -29,20 +29,19 @@ if ($sunny) {
                 background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Weather-rain-thunderstorm.svg/919px-Weather-rain-thunderstorm.svg.png);
             }
 
-            .inlineblock {
-                display: inline-block;
+            .container {
+                display: flex;
+                align-items: center;
             }
 
         </style>
     </head>
     <body>
-        <div
-            class="<?php print $class; ?>">
+        <div class="container">
+            <div class="<?php print $class; ?>">
+            </div>
+            <h3><?php print $oras; ?></h3>
         </div>
-        <h3  
-            class="inlineblock">
-            <?php print $oras; ?>
-        </h3>
     </body>
 </html>
 
