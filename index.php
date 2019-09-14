@@ -1,61 +1,25 @@
 <?php
 
-$randomiser = rand(0, 2);
-
-print $randomiser;
-
-if ($randomiser ===0) {
-    $coffe = 'black-coffe';
-} elseif ($randomiser ===1) {
-    $coffe = 'latte';
-} else {
-    $coffe = 'tea';
-}
-
-?>
-
+?> 
 <html>
     <head>
-        <title> Antraštė </title>  
-        <link rel="stylesheet" href ="includes/normalize.css">
-        <style>
-
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .black-coffe {
-                color: white;
-                height: 100vh;
-                background-color: black;  
-            }
-
-            .latte {
-                color: white;
-                height: 100vh;
-                background-color: red;
-            }
-              
-            .tea {
-                color: white;
-                height: 100vh;
-                background-color: yellow;
-            }
-            
-            .p {
-                font-size: 40px;
-            }
-
-        </style>
+        <meta charset="UTF-8">
+        
     </head>
     <body>
-        <div class="<?php print $coffe; ?>">
-            <p>
-                Gersiu <?php print $coffe; ?>
-            </p>
-        </div>
-    </body>
+        <h1>
+          <?php print 'PHP lydės ir' . ' ' . 
+                  date('Y-m-d', strtotime('+' . (rand(1, 10) . 'year') . (rand(1, 12) . 'months') . (rand(1, 28) . 'days'))); ?>  
+        </h1>
+        <p>
+             <?php print 'PHP lydės ir' . ' ' . date('Y-m-d', strtotime('+' . rand(1, 3600). 'days')) ?>  
+        </p>
+    <p> 
+       Kamilė - <?php print 'galbūt turėsiu ' . rand(1, 5) . ' vaikus'; ?>
+    </p>
+        <p><?php print 'Trumpas nebebus prezidentu nuo' . date(' Y-m-d', strtotime('+' . rand(2, 10). 'year')); ?></p>
+          <p><?php print date('Y', strtotime('+1 year')); ?> ne už kalnų!</p>
+</body>
 </html>
+
 
