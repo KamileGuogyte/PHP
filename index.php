@@ -1,16 +1,20 @@
 
 <?php
 
-$mano_atmintis = ["penktadienis", "paskaita", "baras", "kavinė", "šokiai", "kokteiliai", "kelionė", "skrydis", "jūra"];
+$array = [];
+for ($i = 1; $i < 7; $i++) {
+    $array[] = date('l', strtotime("+ $i days")); 
+}
+    var_dump($array);
 
 ?>
+
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
     <body>
-           <h1>Kas buvo penktadienį?</h1>
-             <h1><?Kamilė atmintis </h1>
-               <ul><?php foreach($mano_atmintis as $value){ ?></ul>
-                 <li><?php print "$value <br>";} ?></li>           
+        <h2><?php  ?></h2>
     </body>
-</html>
-
-
+</html> 
