@@ -1,26 +1,21 @@
 <?php
 
-
-
 $maisto_kiekis = [
-[
-'Kiaušiniai' => [
-'kiekis' => '2',
- 'dydis' => 'didelis',
-],
-],
- [
-'Baklažanas' => [
-'kiekis' => '1',
- 'dydis' => 'mažas',
-],
-],
-[
-'Grietinė' => [
-'kiekis' => '1',
- 'dydis' => 'didelis',
-],
-],
+    'kiausiniai' => [
+        'pavadinimas' => 'Kiaušiniai',
+        'kiekis' => '2',
+        'dydis' => 'didelis',
+    ],
+    'baklazanas' => [
+        'pavadinimas' => 'Baklažanas',
+        'kiekis' => '1',
+        'dydis' => 'mažas',
+    ],
+    'grietine' => [
+        'pavadinimas' => 'Grietinė',
+        'kiekis' => '1',
+        'dydis' => 'didelis',
+    ],
 ];
 
 
