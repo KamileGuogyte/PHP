@@ -1,60 +1,43 @@
-
 <?php
 
-$mano_atmintis = [
-    'penktadienis',
-    'pakaitos',
-    'persirengimas',
-    'miestas',
-    'baras',
-    'šokiai',
-    'kelionė',
-    'jūra'
+$zodziai = [
+    'Petras',
+    'laukė',
+    'prie',
+    'parduotuvės',
+    'durų'
 ];
 
-$draugo_atmintis = [
-    'penktadienis',
-    'darbas',
-    'mašina',
-    'degalinė',
-    'baras',
-    'šokiai',
-    'kelionė',
-    'jūra'
-];
+$count_zodziai = count($zodziai) - 1;
+$rasinelis = '';
+        
+//foreach ($zodziai as $kiti_zodziai) {
+//    $rand_idx = rand(0, $count_zodziai);
+//    $rasinelis .= "$zodziai[$rand_idx] ";
+//};
+//var_dump($rasinelis);
 
-$bendra_atmintis = [];
+for ($x=0; $x < 20; $x++) {
+   $rand_idx = rand(0, $count_zodziai);
+    $rasinelis .= "$zodziai[$rand_idx] ";
+}
 
-foreach ($mano_atmintis as $mano_prisiminimas) {
-    var_dump($mano_prisiminimas);
-    foreach ($draugo_atmintis as $draugo_prisiminimas) {
-        var_dump($draugo_prisiminimas);
-        if ($mano_prisiminimas == $draugo_prisiminimas) {
-            $bendra_atmintis[] = $mano_prisiminimas;
-        }
-    }
-};
-var_dump($bendra_atmintis);
+
+  var_dump($rasinelis); 
+ 
+//$text = $zodziai[$rand_idx];
+
 ?>
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <h3>Sutapę prisiminimai</h3>
-        <p>:</p> 
-        <ul>
-            <?php foreach ($bendra_atmintis as $rezultatas): ?>
-                <li> 
-                    <?php print $rezultatas; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </body>
-</html> 
-
-
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Rašinėlis </h1>
+    <ul>
+       
+    </ul>
+</body>
+</html>
 
 
