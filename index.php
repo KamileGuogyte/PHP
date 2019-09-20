@@ -1,67 +1,59 @@
+
 <?php
-$week_days = [
-    'Monday' => 'darbo diena',
-    'Tuesday' => 'darbo diena',
-    'Wednesday' => 'darbo diena',
-    'Thurstay' => 'darbo diena',
-    'Friday' => 'darbo diena',
-    'Saturday' => 'savaitgalis',
-    'Sunday' => 'savaitgalis',
+
+$mano_atmintis = [
+    'penktadienis',
+    'pakaitos',
+    'persirengimas',
+    'miestas',
+    'baras',
+    'šokiai',
+    'kelionė',
+    'jūra'
 ];
-//
-//$week_days[4] = 'Black';
-//var_dump($week_days);
-//
-//unset($week_days[4]);    
-//var_dump($week_days);
-//
-//foreach ($week_days as $index_idx => $days) {
-// if ($index_idx == 'Friday');{
-//     $days = 'Friday yra gera diena';
-// }
-//};
-//var_dump($days);
 
+$draugo_atmintis = [
+    'penktadienis',
+    'darbas',
+    'mašina',
+    'degalinė',
+    'baras',
+    'šokiai',
+    'kelionė',
+    'jūra'
+];
 
-foreach ($week_days as $index_idx => $days) {
-    if ($days == 'darbo diena') {
-        $week_days[$index_idx] = [
-            'Keliamės 6:00',
-            'Sporto klubas',
-            'Rytinis kamštis',
-            'Code Academy',
-            'Vakarinis kamštis',
-            'Netflix'
-        ];
+$bendra_atmintis = [];
+
+foreach ($mano_atmintis as $mano_prisiminimas) {
+    var_dump($mano_prisiminimas);
+    foreach ($draugo_atmintis as $draugo_prisiminimas) {
+        var_dump($draugo_prisiminimas);
+        if ($mano_prisiminimas == $draugo_prisiminimas) {
+            $bendra_atmintis[] = $mano_prisiminimas;
+        }
     }
 };
-
-var_dump($week_days);
+var_dump($bendra_atmintis);
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Užduotis</title>
+        <title></title>
     </head>
     <body>
-        <h1></h1>
+        <h3>Sutapę prisiminimai</h3>
+        <p>:</p> 
         <ul>
+            <?php foreach ($bendra_atmintis as $rezultatas): ?>
+                <li> 
+                    <?php print $rezultatas; ?>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </body>
-</html>
-
-
-
-
-
-<!--
-//foreach ($mano_atmintis as $rezultatas){
-//     if (!in_array($rezultatas, $tuscias_masyvas)) {
-//            $tuscias_masyvas[] = $rezultatas;
-//        } else {
-//            print $rezultatas. '<br />';   
--->
-
+</html> 
 
 
 
