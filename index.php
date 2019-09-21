@@ -1,7 +1,4 @@
-
-
 <?php
-
 $bank_report = [
     [
         'name' => 'Iki Darbo Uzmokestis',
@@ -33,7 +30,48 @@ foreach ($bank_report as $transaction_key => $transaction) {
         $bank_report[$transaction_key]['css_class'] = 'income';
     }
 }
+?>
 
 
 
-var_dump($bank_report);
+<html>
+
+    <style>
+
+        .income {
+
+            color: green;
+
+        }
+
+        .expense {
+
+            color: red;
+
+        }
+
+    </style>
+
+    <body>
+
+        <h1>Banko ataskaita</h1>
+
+        <ul>
+
+            <?php foreach ($bank_report as $transaction_key => $transaction): ?>
+
+                <li class="<?php print $bank_report[$transaction_key]['css_class']; ?>">
+
+                    <?php print $bank_report[$transaction_key]['name']; ?>
+
+                    <?php print $bank_report[$transaction_key]['amount']; ?>
+
+                </li>
+
+            <?php endforeach; ?>
+
+        </ul>
+
+    </body>
+
+</html>
