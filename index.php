@@ -1,43 +1,39 @@
+
+
 <?php
 
-$zodziai = [
-    'Petras',
-    'laukė',
-    'prie',
-    'parduotuvės',
-    'durų'
+$bank_report = [
+    [
+        'name' => 'Iki Darbo Uzmokestis',
+        'amount' => 600,
+    ],
+    [
+        'name' => 'Kalvariju Nacnykas',
+        'amount' => -15,
+    ],
+    [
+        'name' => 'Opium Night Club',
+        'amount' => -230,
+    ],
+    [
+        'name' => 'McDonalds Gedimino pr',
+        'amount' => -20,
+    ]
 ];
 
-$count_zodziai = count($zodziai) - 1;
-$rasinelis = '';
-        
-//foreach ($zodziai as $kiti_zodziai) {
-//    $rand_idx = rand(0, $count_zodziai);
-//    $rasinelis .= "$zodziai[$rand_idx] ";
-//};
-//var_dump($rasinelis);
 
-for ($x=0; $x < 20; $x++) {
-   $rand_idx = rand(0, $count_zodziai);
-    $rasinelis .= "$zodziai[$rand_idx] ";
+
+foreach ($bank_report as $transaction_key => $transaction) {
+
+    if ($bank_report[$transaction_key]['amount'] < 0) {
+
+        $bank_report[$transaction_key]['css_class'] = 'expense';
+    } else {
+
+        $bank_report[$transaction_key]['css_class'] = 'income';
+    }
 }
 
 
-  var_dump($rasinelis); 
- 
-//$text = $zodziai[$rand_idx];
 
-?>
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-    <h1>Rašinėlis </h1>
-    <ul>
-       
-    </ul>
-</body>
-</html>
-
-
+var_dump($bank_report);
