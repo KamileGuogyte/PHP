@@ -20,16 +20,40 @@ $bank_report = [
 
 
 
+$balance = 0;
+
+$total_income = 0;
+
+$total_expenses = 0;
+
+
+
 foreach ($bank_report as $transaction_key => $transaction) {
 
     if ($bank_report[$transaction_key]['amount'] < 0) {
 
         $bank_report[$transaction_key]['css_class'] = 'expense';
+
+        $total_expenses += $bank_report[$transaction_key]['amount'];
     } else {
 
         $bank_report[$transaction_key]['css_class'] = 'income';
+
+        $total_income += $bank_report[$transaction_key]['amount'];
     }
+
+
+
+    $balance += $bank_report[$transaction_key]['amount'];
 }
+
+
+
+$balance_text = "Balansas: $balance eur.";
+
+$total_income_text = "Iplaukos: $total_income eur.";
+
+$total_expenses_text = "Islaidos: $total_expenses eur.";
 ?>
 
 
@@ -77,6 +101,14 @@ foreach ($bank_report as $transaction_key => $transaction) {
 <?php endforeach; ?>
 
         </ul>
+
+        <h2><?php print $balance_text; ?></h2>
+
+        <h3><?php print $total_income_text; ?></h3>
+
+        <h3><?php print $total_expenses_text; ?></h3>
+
+        <h3></h3>
 
     </body>
 
