@@ -27,67 +27,100 @@ $drinks = [
     ],
   ];
 
+$availability = 'Nera sandelyje';
 
-foreach ($drinks as $drink_idx => $drink) {
-    $drinks[$drink_idx]['price_retail'] = number_format($drink['price_stock'] * (1 - $drink['discount'] / 100), 2);
-    $drinks[$drink_idx]['price_display_retail'] = '€' . $drinks[$drink_idx]['price_retail'];
-    if ($drinks[$drink_idx]['price_retail'] < $drinks[$drink_idx]['price_stock']) {
-        $drinks[$drink_idx]['price_display_wholesale'] = '€' . number_format($drinks[$drink_idx]['price_stock'], 2);
-    } else {
-        $drinks[$drink_idx]['price_display_wholesale'] = null;
-    }
-};
+foreach ($drinks as $drink_key => $drink) {
+    $drinks[$drink_key]['price_retail'] = number_format($drink['price_stock'] - ($drink['price_stock'] * $drink['discount'] / 100), 2);
+    $drink_retail_price = number_format($drink['price_stock'], 2);
+
+    $drinks[$drink_key]['in_stock'] = rand(0,1);  
+
+}
 
 ?>
 
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
+        <title>Gerimai</title>
         <style>
-            .border {
-                border: 2px solid black;
-                display: inline-block;
-                position: relative;
+            .drinks-section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
 
-            .drink-name {
-                font-size: 1.4rem;
+            h1 {
                 text-align: center;
-                width: 50%;
-                margin: auto;
             }
 
-            .drink-price-retail {
+            .drink-card {
+                display: inline-block;
+                border: 1px solid black;
+                position: relative;
+                height: 350px;
+            }
+
+            img {
+                height: 280px;
+                width: 280px;
+            } 
+
+            .retail-price {
+                background-color: #FF69B4;
+                color: white;
                 position: absolute;
                 top: 0;
                 right: 0;
-                background: #FF9999;
             }
 
-            .drink-price-wholesale {
+            .retail-price-bigger {
+                background-color: #FF69B4;
+                color: white;
+                position: absolute;
+                padding: 4px;
+                top: 0;
+                right: 0;
+            }
+
+            .stock-price {
+                background-color: grey;
+                color: white;
                 position: absolute;
                 top: 0;
                 left: 0;
-                background: #D3D3D3;
             }
 
-            .drink-image {
-                width: 200px;
-                height: 200px;
-            } 
+            .drink-name {
+                text-align: center;
+            }
+
+           
+            .availability {
+                color: red;
+                text-align: center;
+            }
 
         </style>
     </head>
     <body>
         <h1>Drink Catalogue</h1>
-        <?php foreach ($drinks as $drink): ?>
-            <div class="border">
-                <span class="drink-price-retail"><?php print $drink['price_display_retail']; ?></span>
-                <span class="drink-price-wholesale"><?php print $drink['price_display_wholesale']; ?></span>
-                <img class = "drink-image" src = "<?php print $drink['img']; ?>">
-                <div class = "drink-name"><?php print $drink['name']; ?></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</body>
+        <div class="drinks-section">
+            <?php foreach ($drinks as $drink_key => $drink): ?>
+                <div class ="drink-card">
+                    <?php if ($drink['discount'] > 0) : ?>
+                        <div class="stock-price">$ <?php print $drink_retail_price; ?></div>
+                        <div class="retail-price-bigger">$ <?php print $drink['price_retail']; ?></div>
+                    <?php else: ?>
+                        <div class="retail-price">$ <?php print $drink['price_retail']; ?></div>
+                    <?php endif; ?>
+                    <img src="<?php print $drink['img']; ?>" >
+                    <p class="drink-name"><?php print $drink['name']; ?></p>
+                    <?php if (!$drink['in_stock']) : ?>
+                        <p class="availability"><?php print $availability; ?></p>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </body>
 </html>
