@@ -4,8 +4,12 @@
 $sheep = ['blee'];
 
 for ($x = 0; $x < 4; $x++){
-   $sheep[] = $sheep[0];
+    var_dump($x);
+   $sheep[] = &$sheep[$x];
+   
 }
+
+$sheep[0] = 'kitaip';
 
  var_dump($sheep);
 
