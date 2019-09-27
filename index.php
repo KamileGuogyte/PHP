@@ -1,19 +1,13 @@
 <?php
 
-$roll_joints = true;
 
-$joint1 = &$roll_joints;
-$joint2 = &$joint1;
-$joint3 = &$joint2;
+$sheep = ['blee'];
 
-print $joint1;
-print $joint2;
-print $joint3;
+for ($x = 0; $x < 4; $x++){
+   $sheep[] = $sheep[0];
+}
 
-
-
-
-
+ var_dump($sheep);
 
 
 ?>
