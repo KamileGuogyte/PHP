@@ -1,40 +1,32 @@
 <?php
 
-$array = ['a', 'c', 't', 't', 'n'];
+var_dump($_POST);
 
-function count_values($array, $value) {
-    $counter = 0;
-    foreach ($array as $ride) {
-        if ($ride === $value) {
-            $counter++;
-        }  
-    }
-    return $counter;
+$ats = 0;
+
+function square($x) {
+    return $x ** 2;    
 }
 
-
-$array = ['a', 'c', 't', 't', 'n'];
-
-function change_values(&$array, $val_from, $val_to) {
-    foreach ($array as &$ride) {
-        if ($ride === $val_from) {
-            $ride = $val_to;
-        }  
-    }
+if (isset($_POST['enter'])){
+    $ats = square($_POST['skaicius']);
 }
 
-change_values($array, 't', 'T');
-var_dump($array);
-
+$text = "Atsakymas: $ats";
 
 ?>
 <html>
     <head>
-        <title>Reference</title>
-   
+        <meta charset="UTF-8"
+        <title>Forms</title>
     </head> 
     <body>
-     
+        <form method="POST">
+            <span>Pakelti kvadratu:</span>
+            <input type="number" name="skaicius" required/>
+            <input type="submit" name="enter"/>
+        </form>
+        <h1><?php print $text; ?></h1>
     </body>
 </html>
 
