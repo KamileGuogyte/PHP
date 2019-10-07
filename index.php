@@ -23,7 +23,7 @@ $array = [
 
 $new_array = [];
 
-foreach ($array['participants'] as $key => $value) {
+foreach ($array['participants'] as $value) {
    $new_array[] = $value['age'];
       
 }
