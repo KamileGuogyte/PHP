@@ -1,25 +1,34 @@
 <?php
 
 $array = [
-    'vardas',
-    'pavarde',
-    'amzius' => [
-        10 => [
-            'moksleivis'
-            ],
-        20 => [
-            'studentas'
+    'participants' => [
+        [
+            'name' => 'Juozas',
+            'surname' => 'Juozaitis',
+            'age' => 86,
+        ],
+        [
+            'name' => 'Dalia',
+            'surname' => 'Zemkalnyte',
+            'age' => 28,
+        ],
+        [
+            'name' => 'Mantas',
+            'surname' => 'Britkus',
+            'age' => 41,
         ]
     ]
 ];
 
-foreach ($array['amzius'] as $key => $value) {
-    foreach ($value as $indeksas => $kazkas)
-    var_dump($pasirinkimai);
+
+$new_array = [];
+
+foreach ($array['participants'] as $key => $value) {
+   $new_array[] = $value['age'];
+      
 }
 
-var_dump($array);
-print $array['amzius'][20][0];
+  var_dump($new_array);
 
 
 
