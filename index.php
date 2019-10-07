@@ -13,12 +13,15 @@ $array = [
     ]
 ];
 
-//foreach ($array['amzius'] as $pasirinkimai) {
-//    var_dump($pasirinkimai);
-//}
+foreach ($array['amzius'] as $key => $value) {
+    foreach ($value as $indeksas => $kazkas)
+    var_dump($pasirinkimai);
+}
 
 var_dump($array);
 print $array['amzius'][20][0];
+
+
 
 ?>
 <html>
