@@ -1,103 +1,24 @@
 <?php
-var_dump($_POST);
 
-$form = [
-    'attr' => [
-        'action' => 'index.php',
-        'class' => 'bg-black'
-    ],
-    'title' => 'Kalėdų norai',
-    'fields' => [
-        'first_name' => [
-            'attr' => [
-                'type' => 'text'
+$array = [
+    'vardas',
+    'pavarde',
+    'amzius' => [
+        10 => [
+            'moksleivis'
             ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Aurimas',
-                    'class' => 'input-text',
-                    'id' => 'first-name'
-                ]
-            ],
-            'label' => 'Vardas:',
-            'error' => 'Vardas per trumpas!'
-        ],
-        'last_name' => [
-            'attr' => [
-                'type' => 'text'
-            ],
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Stecenka',
-                    'class' => 'input-text',
-                    'id' => 'last-name'
-                ]
-            ],
-            'label' => 'Pavardė:',
-            'error' => 'Paliktas tuščias laukas!'
-        ],
-        'wish' => [
-            'attr' => [
-                'type' => 'select',
-                'value' => 'tv'
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'input-select',
-                    'id' => 'wish'
-                ]
-            ],
-            'options' => [
-                'car' => 'BMW',
-                'tv' => 'Teliko',
-                'socks' => 'Kojinių'
-            ],
-            'label' => 'Kalėdom noriu:',
+        20 => [
+            'studentas'
         ]
-    ],
-    'buttons' => [
-        'submit' => [
-            'type' => 'submit',
-            'value' => 'Siųsti'
-        ],
-        'reset' => [
-            'type' => 'reset',
-            'value' => 'Išvalyti'
-        ]
-    ],
-    'message' => 'Formos Message!'
+    ]
 ];
 
-/**
- * Generates HTML attributes
- * @param array $attr
- * @return string
- */
-function html_attr($attr) {
-    $html_attr_array = [];
+//foreach ($array['amzius'] as $pasirinkimai) {
+//    var_dump($pasirinkimai);
+//}
 
-    foreach ($attr as $attribute_key => $attribute_value) {
-        $html_attr_array[] = strtr('@key="@value"', [
-            '@key' => $attribute_key,
-            '@value' => $attribute_value
-        ]);
-    }
-
-    return implode(' ', $html_attr_array);
-}
-
-function get_filtered_input($field_indexes) {
-    $filter_parameters = [];
-
-    foreach ($field_indexes as $value) {
-        $filter_parameters[$value] = FILTER_SANITIZE_FULL_SPECIAL_CHARS;
-    }
-    return filter_input_array(INPUT_POST, $filter_parameters);
-}
-
-$filtered_input = get_filtered_input(['first_name', 'last_name']);
-
-var_dump($filtered_input);
+var_dump($array);
+print $array['amzius'][20][0];
 
 ?>
 <html>
@@ -108,8 +29,8 @@ var_dump($filtered_input);
     </head>
     <body>
 
-        <h1><?php print $_POST['first_name'] ?? ''; ?></h1> 
-        <h2><?php print $_POST['wish'] ?? ''; ?></h2>  
-<?php require 'templates/form.tpl.php'; ?>
+        <h1><?php ?></h1> 
+
+
     </body>
 </html>
