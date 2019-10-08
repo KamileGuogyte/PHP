@@ -1,8 +1,5 @@
 <?php
 
-
-
-
   function add_one($var) {
       return ++$var;
   }
@@ -12,7 +9,7 @@
   
   
   $x = 4
-          $y = 2
+  $y = 2
   function add_some($x, $y) { deklaracija
       return ($x + $y)
   }
