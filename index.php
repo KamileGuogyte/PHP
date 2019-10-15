@@ -1,174 +1,111 @@
 <?php
-var_dump($_POST);
+
+require 'functions/html/generators.php';
+require 'functions/form/core.php';
+require 'functions/file.php';
 
 $form = [
-    'attr' => [
-        'action' => 'index.php',
-        'class' => 'bg-black'
+    'attr' => 
+        [ 
     ],
-    'title' => 'Kalėdų norai',
     'fields' => [
-        'first_name' => [
+        'team' => [
             'type' => 'text',
-            'extra' => [
+            'extras' => [
                 'attr' => [
-                    'placeholder' => 'Enter Name',
-                    'class' => 'input-text',
-                    'id' => 'first-name'
-                ]
-            ],
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'label' => 'Vardas:'
-        ],
-        'last_name' => [
-            'type' => 'text',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Enter Surname',
-                    'class' => 'input-text',
-                    'id' => 'last-name'
-                ]
-            ],
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'label' => 'Pavardė:'
-        ],
-        'age' => [
-            'type' => 'text',
-            'extra' => [
-                'attr' => [
-                    'placeholder' => 'Enter Age',
-                    'class' => 'input-text',
-                    'id' => 'last-name'
-                ]
+                    'placeholder' => 'Team name',
+                    'class' => 'nes-input',
+                ],
             ],
             'validate' => [
                 'validate_not_empty',
-                'validate_is_number',
-                'validate_is_positive',
-                'validate_max_100'
+                'validate_team',
             ],
-            'label' => 'Metai:'
         ],
-        'wish' => [
-            'type' => 'select',
-            'value' => 'car',
-            'extra' => [
-                'attr' => [
-                    'class' => 'input-select',
-                    'id' => 'wish'
-                ]
-            ],
-            'options' => [
-                'car' => 'BMW',
-                'tv' => 'Teliko',
-                'socks' => 'Kojinių'
-            ],
-            'label' => 'Kalėdom noriu:',
-        ]
     ],
     'buttons' => [
         'submit' => [
             'type' => 'submit',
-            'value' => 'Siųsti'
+            'class' => 'nes-btn is-success',
         ],
-        'reset' => [
-            'type' => 'reset',
-            'value' => 'Išvalyti'
-        ]
     ],
-    'message' => 'Formos Message!'
+    'callbacks' => [
+        'success' => 'form_success',
+        'fail' => 'form_fail',
+    ],
+        
 ];
 
-/**
- * Generates HTML attributes
- * @param array $attr
- * @return string
- */
-function html_attr($attr) {
-	$html_attr_array = [];
-	
-	foreach ($attr as $attribute_key => $attribute_value) {
-		$html_attr_array[] = strtr('@key="@value"', [
-			'@key' => $attribute_key,
-			'@value' => $attribute_value
-		]);
-	}
-	
-	return implode(' ', $html_attr_array);
-}
-function validate_not_empty($field_input, &$field) {
-    if ($field_input === '') {
-        $field['error'] = 'Laukas negali būti tuščias!';
-    } else {
-        return true;
-    }
-}
-function validate_is_number($field_input, &$field) {
-    if (!is_numeric($field_input)) {
-        $field['error'] = 'Įveskite skaičių!';
-    } else {
-        return true;
-    }
-}
-function validate_max_100($field_input, &$field) {
-    if ($field_input > 100) {
-        $field['error'] = 'Per daug metų!';
-    } else {
-        return true;
-    }
-}
-function validate_is_positive($field_input, &$field) {
-    if ($field_input < 0) {
-        $field['error'] = 'Įveskite teigiamą skaičių!';
-    } else {
-        return true;
-    }
-}
-function get_form_input($form) {
-	$filter_parameters = [];
-	
-	foreach ($form['fields'] as $field_id => $field) {
-		$filter_parameters[$field_id] = $field['filter'] ?? FILTER_SANITIZE_SPECIAL_CHARS;
-	}
-	
-	return filter_input_array(INPUT_POST, $filter_parameters);
-}
-function validate_form(&$form) {
-	$filtered_input = get_form_input($form);
-	foreach ($form['fields'] as $field_id => &$field) {
-		$field_input = $filtered_input[$field_id];
-		$field['attr']['value'] = $field_input;
-		foreach ($field['validate'] ?? [] as $validator_id => $validator) {
-			$validator($filtered_input[$field_id], $field);
-		}
-	}
-}
-validate_form($form);
-
-function fail($filtered_input, &$form) {
-    print 'fail';
-}
-function success($filtered_input, &$form) {
-    print 'success';
-}
+//$team = [
+//    [
+//        'team' => 'Komanda-1',
+//        'players' => [
+//            [
+//                'nickname' => '1',
+//                'score' => 'aaa'
+//            ],
+//        ],
+//    ],
+//    [
+//        'team' => 'Komanda-2',
+//        'players' => [
+//            [
+//                'nickname' => '2',
+//                'score' => 'bbb'
+//            ],
+//        ],
+//    ],
+//];
 
 
-$var = 'test';
+function form_success($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
+    $users_array = file_to_array('data/teams.txt'); // users_array - kiekvieno submit metu uzkrauna esama teams.txt reiksme, ir padaro masyvu
+    $filtered_input['players'] = [];
+    $users_array[] = $filtered_input; // einamuoju indeksu prideda inputus i users_array
+    array_to_file($users_array, 'data/teams.txt'); // User_array konvertuoja i .txt faila JSON formatu
+}
 
-$var();
+function form_fail($filtered_input, $form) { // vykdoma, jeigu forma uzpildyta teisingai
 
+}
+
+$filtered_input = get_filtered_input($form); 
+ 
+
+
+if (!empty($filtered_input)) {
+    validate_form($filtered_input, $form);
+    
+    
+}
 ?>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Form Templates</title>
-	<link rel="stylesheet" href="includes/style.css">
-</head>
-<body>
-	<?php require 'templates/form.tpl.php'; ?>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Form from arrays, templates and 'require'</title>
+        <!-- latest -->
+        <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet"/>
+        <!-- core style only -->
+        <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet"/>
+        <link href="includes/style.css" rel="stylesheet"/>
+       
+    </head>
+    <body>
+
+        <div class="container">
+            <?php require 'templates/form.tpl.php'; ?>
+        </div>
+
+    </body>
 </html>
+
+
+
+
+
+
+
+
