@@ -1,4 +1,7 @@
 <?php
+
+//join irasomas playeris i komanda  
+
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
@@ -95,9 +98,9 @@ if (!empty($filtered_input)) {
 var_dump($_COOKIE);
 
 
-       ($_COOKIE['cookie_nickname'])) {
+    
     $text = 'Jau esi komandoje' . $_COOKIE['cookie_nickname']
-}
+
  ?>
     <html>
         <head>
