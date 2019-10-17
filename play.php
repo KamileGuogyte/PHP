@@ -3,79 +3,73 @@ require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
 
+if (empty($_COOKIE)) {
+    header('Location: join.php');
+    exit();
+}
 
 $form = [
-  
-    'title' => 'Go for it',
     'buttons' => [
-        'submit' => [
+        'kick' => [
             'type' => 'submit',
             'value' => 'Kick the ball',
         ],
     ],
-    'validators' => [
-        'validate_kick'
-        
-    ],
+    'validators' => ['validate_kick'],
     'callbacks' => [
         'success' => 'form_success',
-        'fail' => 'form_fail'
     ]
 ];
 
-
-
-$form['title'] = 'Go for it, ' . $_COOKIE['cookie_nickname'];
-
-function form_sucess() {
+function validate_kick($filtered_input, &$form) {
     $teams = file_to_array('data/teams.txt');
 
     foreach ($teams as &$team) {
-        if ($team['team_name'] === $_COOKIE['cookie_team']) {
-            foreach ($team['players'] as $player) {
-                if ($player['nickname'] === $_COOKIE['cookie_nickname']) {
-                    $player['score'] += 2;
-                    var_dump($player);
-//                    header('Location: join.php');
-                  
+        if ($team['team_name'] == $_COOKIE['cookie_team']) {
+            foreach ($team['players'] as &$player) {
+                if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+                    return true;
+                }
+            }
+        }
+    }
+    
+    $form['message'] = 'Tu kazka cia suki';
+}
+
+function form_success($filtered_input, &$form) {
+    $teams = file_to_array('data/teams.txt');
+
+    foreach ($teams as &$team) {
+        if ($team['team_name'] == $_COOKIE['cookie_team']) {
+            foreach ($team['players'] as &$player) {
+                if ($player['nickname'] == $_COOKIE['cookie_nickname']) {
+                    $player['score'] ++;
                 }
             }
         }
     }
 
-//kai siunciame dokuneta i browseri var_dump yra html yra body struktura ne header.
-    
     array_to_file($teams, 'data/teams.txt');
+    $form['message'] = "Spyris iskaitytas ({$player['score']})";
 }
 
-function validate_kick($filtered_input, $form) {
-    print 'veikia validate_kick';
+if (get_form_action() == 'kick') {
+    validate_form([], $form);
 }
 
-    if (isset($_POST['submit'])) {
-        form_success();
-    }
+$text = 'Go For It, ' . $_COOKIE['cookie_nickname'];
 
-
-
-
- 
-    ?>
-
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Join!</title>
-            <link rel="stylesheet" href="includes/style.css">
-        </head>
-        <body>
-    <?php if (isset($_COOKIE['cookie_nickname'])) ; ?> 
-    <h2><?php print $text ?></h2>
-            <?php else:  ?>
+?>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="includes/style.css">
+    </head>
+    <body class="bg">
+        <div class="laukas">
+            <h1><?php print $text; ?></h1>
             <?php require 'templates/form.tpl.php'; ?>
-</body>
+        </div>
+    </body>
 </html>
-
-<!--visi validatoriai vienam fieldui galiojo
-cia nera nie vieno field ir jeigu get filtered input us tuscias nes foreacjpri koekviena formss
-foelda-->
