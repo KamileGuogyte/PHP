@@ -7,7 +7,7 @@
 		<?php endif; ?>
 
 		<!--Start Field Generation-->
-		<?php foreach ($form['fields'] as $field_id => $field): ?>
+		<?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
 			<div class="field-container">
 
 				<!--Label-->
@@ -20,13 +20,13 @@
 				<?php if ($field['type'] === 'select'): ?>
 					<select <?php print html_attr(['name' => $field_id] + ($field['extra']['attr'] ?? [])); ?>>
 						<?php foreach ($field['options'] as $option_id => $option): ?>
-							<option value="<?php print $option_id; ?>" <?php print ($field['value'] ?? null) === $option_id ? 'selected' : '' ?>>
+							<option value="<?php print $option_id; ?>" <?php print ($field['value'] ?? null) === $option_id ? 'selected' : ''; ?>>
 								<?php print $option; ?>
 							</option>
 						<?php endforeach; ?>
 					</select>
 				<?php else: ?>
-					<input <?php print html_attr(['name' => $field_id, 'type' => $field['type'], 'value' => $field['value'] ?? ''] + $field['extra']['attr'] ?? []); ?>>
+					<input <?php print html_attr(['name' => $field_id, 'type' => $field['type'], 'value' => $field['value'] ?? ''] + ($field['extra']['attr'] ?? [])); ?>>
 				<?php endif; ?>
 
 				<?php if (isset($field['label'])): ?>
@@ -50,7 +50,7 @@
 		<?php if (isset($form['buttons'])): ?>
 			<?php foreach ($form['buttons'] as $button_id => $button): ?>
 				<div class="button-container">
-					<input <?php print html_attr(['name' => $button_id] + $button); ?>>
+					<input <?php print html_attr(['name' => 'action', 'value' =>  $button_id] + $button); ?>>
 				</div>
 			<?php endforeach; ?>
 		<?php endif; ?>
