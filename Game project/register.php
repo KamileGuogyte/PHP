@@ -35,8 +35,8 @@ $form = [
             ],
             'validators' => [
                 'validate_not_empty',
-               'validate_email',
-              //  'validate_email_unique',
+                'validate_email',
+                'validate_email_unique',
             ],
         ],
         'password' => [
@@ -50,7 +50,7 @@ $form = [
                 ],
             ],
             'validators' => [
-                //'validate_not_empty',
+                'validate_not_empty',
                 //'validate_password'
             ],
         ],
@@ -65,7 +65,7 @@ $form = [
                 ],
             ],
             'validators' => [
-               // 'validate_not_empty',
+                'validate_not_empty',
             ],
         ],
     ],
@@ -90,8 +90,7 @@ $form = [
 function form_success($filtered_input, &$form) { 
     $users_array = file_to_array('data/users.txt'); 
     
-    $filtered_input['user'] = [];
-    $users_array[] = $filtered_input; 
+    $users_array[] = $filtered_input;
     
     array_to_file($users_array, 'data/users.txt');  
 }
@@ -100,6 +99,8 @@ function form_fail($filtered_input, &$form) {
 }
 
 
+
+//ar yra imputas ir jei yra jis yra validuojamas iskvieciam get filtered ir validatre form
 $filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {

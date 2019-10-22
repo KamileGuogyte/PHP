@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    margin: 50px 0 0 0;
+    padding: 20px 0 0;
+    justify-content: center;
+}
+
+form div {
+    display: inline;
+}
+
+input {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+input[type="submit"] {
+    margin: 10px 0 0;
+    width: 130px;
+    background-color: #229022;
+    color: white;
+}
+
+input[type="submit"]:hover {
+    background-color: #096A09;
+    cursor: pointer;
+}

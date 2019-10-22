@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'functions/form/core.php';
 require 'functions/html/generators.php';
 require 'functions/file.php';
@@ -8,22 +10,8 @@ require 'functions/file.php';
 $form = [
     'title' => 'Registracija',
     'attr' => [
-        
     ],
     'fields' => [
-        'name' => [
-            'label' => 'Vardas',
-            'type' => 'text',
-            'extras' => [
-                'attr' => [
-                    'placeholder' => 'Vardas Pavardė',
-                    'class' => 'input-text',
-                ],
-            ],
-            'validators' => [
-                'validate_not_empty',
-            ],
-        ],
         'email' => [
             'label' => 'El.paštas',
             'type' => 'text',
@@ -35,8 +23,7 @@ $form = [
             ],
             'validators' => [
                 'validate_not_empty',
-               'validate_email',
-                'validate_email_unique',
+                'validate_email',
             ],
         ],
         'password' => [
@@ -51,35 +38,16 @@ $form = [
             ],
             'validators' => [
                 'validate_not_empty',
-                'validate_password'
-            ],
-        ],
-        'password_repeat' => [
-            'label' => 'Pakartoti slaptažodį',
-            'type' => 'text',
-            'extras' => [
-                'attr' => [
-                    'placeholder' => 'Password repeat',
-                    'value' => 'Pakartokite el.paštą',
-                    'class' => 'input-text',
-                ],
-            ],
-            'validators' => [
-               'validate_not_empty',
             ],
         ],
     ],
     'buttons' => [
-        'submit' => [
-            'type' => 'submit',
-            'value' => 'Join'
+        'Prisijungti' => [
+            'type' => 'submit'
         ],
     ],
     'validators' => [
-        'validate_fields_match' => [
-            'password',
-            'password_repeat',
-        ],
+        'validate_login'
     ],
     'callbacks' => [
         'success' => 'form_success',
@@ -87,30 +55,30 @@ $form = [
     ]
 ];
 
-function form_success($filtered_input, &$form) { 
-    $users_array = file_to_array('data/users.txt'); 
+function form_success($filtered_input, &$form) {
+    print 'prisijungei';
     
-    $filtered_input['user'] = [];
-    $users_array[] = $filtered_input; 
-    
-    array_to_file($users_array, 'data/users.txt');  
+  $_SESSION['email'] = $filtered_input['email'];
+//$form['message'] = 'Sveiki, sugrįžę';  
+header('Loacation: index.php');
 }
 
 function form_fail($filtered_input, &$form) {
+    print 'nepavyko prisijungti';
 }
-
 
 $filtered_input = get_filtered_input($form);
 
 if (!empty($filtered_input)) {
     validate_form($filtered_input, $form);
-
 }
 
 
+
+
+
+
 //validate_fields_match($filtered_unput, $form, $params);
-
-
 ?>
 
 <html>
@@ -122,6 +90,12 @@ if (!empty($filtered_input)) {
     <body>
 
         <div class="container">
-            <?php require 'templates/form.tpl.php'; ?>
+<?php require 'templates/form.tpl.php'; ?>
         </div>
+
+    </body>
+</html>
+
+
+
 
